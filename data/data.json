@@ -1,65 +1,101 @@
 [
-  { "model": "Personne", "data": { "nom": "John Doe" } },
+  {
+    "model": "Personne",
+    "data": {
+      "nom": "John Doe"
+    }
+  },
   {
     "model": "Patrimoine",
     "data": {
-      "possesseur": { "nom": "John Doe" },
+      "possesseur": {
+        "nom": "John Doe"
+      },
       "possessions": [
         {
-          "possesseur": { "nom": "John Doe" },
+          "possesseur": {
+            "nom": "John Doe"
+          },
           "libelle": "MacBook Pro",
-          "valeur": 4000000,
+          "valeur": 4300000,
           "dateDebut": "2023-12-25T00:00:00.000Z",
           "dateFin": null,
           "tauxAmortissement": 5
         },
         {
-          "possesseur": { "nom": "John Doe" },
-          "libelle": "Alternance",
-          "valeur": 0,
-          "dateDebut": "2022-12-31T21:00:00.000Z",
+          "possesseur": {
+            "nom": "John Doe"
+          },
+          "libelle": "Compte épargne",
+          "valeur": 500000,
+          "dateDebut": "2019-01-06T00:00:00.000Z",
           "dateFin": null,
-          "tauxAmortissement": null,
-          "jour": 1,
-          "valeurConstante": 500000
+          "tauxAmortissement": -5
         },
         {
-          "possesseur": { "nom": "John Doe" },
-          "libelle": "Survie",
-          "valeur": 0,
-          "dateDebut": "2022-12-31T21:00:00.000Z",
+          "possesseur": {
+            "nom": "John Doe"
+          },
+          "libelle": "Clothes",
+          "valeur": 2000000,
+          "dateDebut": "2020-01-01T00:00:00.000Z",
           "dateFin": null,
-          "tauxAmortissement": null,
+          "tauxAmortissement": 10
+        },
+        {
+          "possesseur": {
+            "nom": "John Doe"
+          },
+          "libelle": "Alternance",
+          "valeur": 600000,
+          "dateDebut": "2023-02-13T00:00:00.000Z",
+          "dateFin": "2024-09-07T05:11:07.571Z",
+          "tauxAmortissement": 0,
+          "jour": 1,
+          "valeurConstante": 600000
+        },
+        {
+          "possesseur": {
+            "nom": "John Doe"
+          },
+          "libelle": "Survie",
+          "valeur": 300000,
+          "dateDebut": "2023-02-13T00:00:00.000Z",
+          "dateFin": null,
+          "tauxAmortissement": 0,
           "jour": 2,
           "valeurConstante": -300000
         },
         {
-          "possesseur": { "nom": "John Doe" },
-          "libelle": "MacBook Pro",
-          "valeur": 4000000,
-          "dateDebut": "2023-12-25T00:00:00.000Z",
-          "dateFin": null,
-          "tauxAmortissement": 5
+          "possesseur": {
+            "nom": "John Doe"
+          },
+          "libelle": "Redmi Note 9 (Lost)",
+          "valeur": 800000,
+          "dateDebut": "2022-12-29T00:00:00.000Z",
+          "dateFin": "2024-09-06T18:55:45.243Z",
+          "tauxAmortissement": 15
         },
         {
-          "possesseur": { "nom": "John Doe" },
-          "libelle": "Alternance",
-          "valeur": 0,
-          "dateDebut": "2022-12-31T21:00:00.000Z",
-          "dateFin": null,
-          "tauxAmortissement": null,
-          "jour": 1,
-          "valeurConstante": 500000
+          "libelle": "Alternat",
+          "valeur": "20000000",
+          "dateDebut": "2024-09-06",
+          "tauxAmortissement": 4,
+          "dateFin": "2024-09-06T16:02:30.107Z"
         },
         {
-          "possesseur": { "nom": "John Doe" },
-          "libelle": "Survie",
-          "valeur": 0,
-          "dateDebut": "2022-12-31T21:00:00.000Z",
-          "dateFin": null,
-          "tauxAmortissement": null,
-          "jour": 2,
-          "valeurConstante": -300000
+          "libelle": "Samgung Galaxy S23 (Gifted)",
+          "valeur": "1600000",
+          "dateDebut": "2024-09-06",
+          "tauxAmortissement": 10,
+          "dateFin": null
+        },
+        {
+          "libelle": "Samgung Galaxy S23 ",
+          "valeur": "20000000",
+          "dateDebut": "2024-09-07",
+          "tauxAmortissement": "4",
+          "dateFin": null
         }
       ]
     }

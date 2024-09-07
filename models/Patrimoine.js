@@ -13,7 +13,7 @@ export default class Patrimoine {
   addPossession(possession) {
     if (possession.possesseur != this.possesseur) {
       console.log(
-        `${possession.libelle} n'appartient pas à ${this.possesseur}`,
+        `${possession.libelle} n'appartient pas à ${this.possesseur}`
       );
     } else {
       this.possessions.push(possession);
@@ -21,7 +21,7 @@ export default class Patrimoine {
   }
   removePossession(possession) {
     this.possessions = this.possessions.filter(
-      (p) => p.libelle !== possession.libelle,
+      (p) => p.libelle !== possession.libelle
     );
   }
 }
