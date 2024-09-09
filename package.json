@@ -15,7 +15,8 @@
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "fs": "^0.0.1-security",
-    "mocha": "^10.7.0"
+    "mocha": "^10.7.0",
+    "uuid": "^10.0.0"
   },
   "directories": {
     "test": "test"

@@ -2,6 +2,7 @@ import express from "express";
 import { promises as fsPromises } from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { v4 as uuidv4 } from "uuid";
 
 const router = express.Router();
 
@@ -67,6 +68,7 @@ router.post("/", async (req, res) => {
   try {
     const data = await readData();
     const newPossession = {
+      id: uuidv4(), // Générer un identifiant unique
       libelle,
       valeur,
       dateDebut,
@@ -93,8 +95,8 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Update possession by libelle
-router.put("/:libelle", async (req, res) => {
+// Update possession by id
+router.put("/:id", async (req, res) => {
   const { libelle, valeur, dateDebut, tauxAmortissement, dateFin } = req.body;
 
   // Validation des entrées
@@ -112,9 +114,7 @@ router.put("/:libelle", async (req, res) => {
     const data = await readData();
     const patrimoine = data.find((item) => item.model === "Patrimoine").data
       .possessions;
-    const possession = patrimoine.find(
-      (item) => item.libelle === req.params.libelle
-    );
+    const possession = patrimoine.find((item) => item.id === req.params.id);
 
     if (possession) {
       possession.libelle = libelle || possession.libelle;
@@ -145,14 +145,12 @@ router.put("/:libelle", async (req, res) => {
 });
 
 // Close possession (set dateFin to current date)
-router.put("/:libelle/close", async (req, res) => {
+router.put("/:id/close", async (req, res) => {
   try {
     const data = await readData();
     const patrimoine = data.find((item) => item.model === "Patrimoine").data
       .possessions;
-    const possession = patrimoine.find(
-      (item) => item.libelle === req.params.libelle
-    );
+    const possession = patrimoine.find((item) => item.id === req.params.id);
 
     if (possession) {
       possession.dateFin = new Date().toISOString();
