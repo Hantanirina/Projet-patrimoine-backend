@@ -20,6 +20,18 @@ const writeData = async (data) => {
   await fsPromises.writeFile(dataPath, JSON.stringify(data, null, 2));
 };
 
+// Fonction pour ajouter des ids manquants
+const addMissingIds = async (possessions) => {
+  let updated = false;
+  possessions.forEach((possession) => {
+    if (!possession.id || possession.id === "") {
+      possession.id = uuidv4();
+      updated = true;
+    }
+  });
+  return updated;
+};
+
 // Validation des données de possession
 const validatePossession = (possession) => {
   const { libelle, valeur, dateDebut, tauxAmortissement } = possession;
@@ -38,9 +50,16 @@ const validatePossession = (possession) => {
 router.get("/", async (req, res) => {
   try {
     const data = await readData();
-    const possessions = data.find((item) => item.model === "Patrimoine").data
+    const patrimoine = data.find((item) => item.model === "Patrimoine").data
       .possessions;
-    res.json({ status: "success", data: possessions });
+
+    // Vérifier et ajouter des ids manquants
+    const updated = await addMissingIds(patrimoine);
+    if (updated) {
+      await writeData(data); // Sauvegarder les changements dans le fichier
+    }
+
+    res.json({ status: "success", data: patrimoine });
   } catch (error) {
     res.status(500).json({
       status: "error",
@@ -52,14 +71,14 @@ router.get("/", async (req, res) => {
 
 // Create possession
 router.post("/", async (req, res) => {
-  const { libelle, valeur, dateDebut, taux, dateFin } = req.body;
+  const { libelle, valeur, dateDebut, tauxAmortissement, dateFin } = req.body;
 
   // Validation des entrées
   const validationError = validatePossession({
     libelle,
     valeur,
     dateDebut,
-    tauxAmortissement: taux,
+    tauxAmortissement: tauxAmortissement,
   });
   if (validationError) {
     return res.status(400).json({ status: "error", message: validationError });
@@ -68,11 +87,11 @@ router.post("/", async (req, res) => {
   try {
     const data = await readData();
     const newPossession = {
-      id: uuidv4(), // Générer un identifiant unique
+      id: uuidv4(),
       libelle,
       valeur,
       dateDebut,
-      tauxAmortissement: taux || 0,
+      tauxAmortissement: tauxAmortissement || 0,
       dateFin: dateFin || null,
     };
 
